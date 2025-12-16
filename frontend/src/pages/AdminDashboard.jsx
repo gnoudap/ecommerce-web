@@ -32,20 +32,21 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setLoading(true);
     const token = JSON.parse(localStorage.getItem('userInfo'))?.token;
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
     try {
       if (activeTab === 'products') {
-        const res = await fetch('http://localhost:5000/api/products');
+        const res = await fetch(`${API_URL}/products`);
         const data = await res.json();
         setProducts(data);
       } else if (activeTab === 'orders') {
-        const res = await fetch('http://localhost:5000/api/orders', {
+        const res = await fetch(`${API_URL}/orders`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await res.json();
         setOrders(data);
       } else if (activeTab === 'users') {
-        const res = await fetch('http://localhost:5000/api/users', {
+        const res = await fetch(`${API_URL}/users`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await res.json();
@@ -60,11 +61,12 @@ const AdminDashboard = () => {
   const handleProductSubmit = async (e) => {
     e.preventDefault();
     const token = JSON.parse(localStorage.getItem('userInfo'))?.token;
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
     try {
       const url = editingProduct
-        ? `http://localhost:5000/api/products/${editingProduct._id}`
-        : 'http://localhost:5000/api/products';
+        ? `${API_URL}/products/${editingProduct._id}`
+        : `${API_URL}/products`;
 
       const method = editingProduct ? 'PUT' : 'POST';
 
@@ -92,9 +94,10 @@ const AdminDashboard = () => {
     if (!confirm('Are you sure you want to delete this product?')) return;
 
     const token = JSON.parse(localStorage.getItem('userInfo'))?.token;
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
     try {
-      const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const res = await fetch(`${API_URL}/products/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -122,9 +125,10 @@ const AdminDashboard = () => {
 
   const handleUpdateOrderStatus = async (orderId, status) => {
     const token = JSON.parse(localStorage.getItem('userInfo'))?.token;
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${orderId}/status`, {
+      const res = await fetch(`${API_URL}/orders/${orderId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
