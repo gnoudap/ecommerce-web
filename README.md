@@ -1,13 +1,30 @@
 # E-Commerce Web Application
 
-A full-stack e-commerce application built with React, Node.js, Express, and MongoDB.
+A full-stack e-commerce application built with React, Node.js, Express, and **MongoDB**.
+
+## Technologies Used
+
+### Backend
+- **Node.js** & **Express.js** - Server framework
+- **MongoDB** & **Mongoose** - Database (NoSQL)
+- **JWT** - Authentication
+- **Stripe** - Payment processing
+- **Redis** - Rate limiting (optional)
+
+### Frontend
+- **React** & **Vite** - UI framework and build tool
+- **Tailwind CSS** - Styling
+- **Context API** - State management
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
-- MongoDB
-- Redis (optional, for rate limiting)
-- Stripe account (for payments)
+Before running this application, ensure you have the following installed:
+
+- **Node.js** (v14 or higher) - [Download here](https://nodejs.org/)
+- **MongoDB** (v4.4 or higher) - [Download here](https://www.mongodb.com/try/download/community)
+  - You can also use MongoDB Atlas (cloud) - [Sign up here](https://www.mongodb.com/cloud/atlas)
+- **Redis** (optional, for rate limiting) - [Download here](https://redis.io/download/)
+- **Stripe account** (for payments) - [Sign up here](https://stripe.com/)
 
 ## Installation
 
@@ -31,57 +48,171 @@ A full-stack e-commerce application built with React, Node.js, Express, and Mong
 
 ## Configuration
 
+### Important: Environment Variables Setup
+
 1. **Backend configuration**
-   - Create a `.env` file in the `backend` folder with the following:
+   - Copy `.env.example` to `.env` in the `backend` folder:
+   ```bash
+   cd backend
+   cp .env.example .env
    ```
+   - Edit the `.env` file with your actual values:
+   ```env
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/ecommerce
-   JWT_SECRET=your_jwt_secret_key
+   NODE_ENV=development
+   
+   # MongoDB Connection String
+   MONGO_URI=mongodb://localhost:27017/ecommerce
+   # For MongoDB Atlas, use: mongodb+srv://<username>:<password>@cluster.mongodb.net/ecommerce
+   
+   JWT_SECRET=your_jwt_secret_key_here
    STRIPE_SECRET_KEY=your_stripe_secret_key
    REDIS_URL=redis://localhost:6379
-   NODE_ENV=development
    ```
 
 2. **Frontend configuration**
-   - Create a `.env` file in the `frontend` folder with the following:
+   - Copy `.env.example` to `.env` in the `frontend` folder:
+   ```bash
+   cd frontend
+   cp .env.example .env
    ```
+   - Edit the `.env` file:
+   ```env
    VITE_API_URL=http://localhost:5000
    VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key
    ```
 
 ## Running the Application
 
-1. **Start MongoDB**
-   - Make sure MongoDB is running on your system
+### Step 1: Start MongoDB
 
-2. **Start Redis (optional)**
-   - If using Redis for rate limiting, start Redis server
+**Option A: Local MongoDB**
+```bash
+# Windows
+mongod
 
-3. **Start the backend server**
-   ```bash
-   cd backend
-   npm run dev
-   ```
-   Backend will run on http://localhost:5000
+# macOS/Linux
+sudo systemctl start mongod
+# or
+brew services start mongodb-community
+```
 
-4. **Start the frontend development server**
-   ```bash
-   cd frontend
-   npm run dev
-   ```
-   Frontend will run on http://localhost:5173
+**Option B: Use MongoDB Atlas (Cloud)**
+- Create a free cluster at https://www.mongodb.com/cloud/atlas
+- Get your connection string and update `MONGO_URI` in backend `.env`
 
-5. **Seed admin user (optional)**
-   ```bash
-   cd backend
-   npm run seed:admin
-   ```
+### Step 2: Verify MongoDB is Running
+
+```bash
+# Check if MongoDB is accessible
+mongosh
+# or
+mongo
+
+# You should see a connection successful message
+```
+
+### Step 3: Start Redis (Optional)
+
+```bash
+# Windows
+redis-server
+
+# macOS/Linux
+redis-server
+```
+
+### Step 4: Start the Backend Server
+
+```bash
+cd backend
+npm run dev
+```
+Backend will run on **http://localhost:5000**
+
+You should see:
+```
+Server running on port 5000
+MongoDB Connected: localhost
+```
+
+### Step 5: Start the Frontend Development Server
+
+Open a new terminal:
+```bash
+cd frontend
+npm run dev
+```
+Frontend will run on **http://localhost:5173**
+
+### Step 6: Seed Admin User (Optional)
+
+```bash
+cd backend
+npm run seed:admin
+```
 
 ## Usage
 
-- Visit http://localhost:5173 to access the application
+- Visit **http://localhost:5173** to access the application
 - Register a new account or use the seeded admin credentials
 - Browse products, add to cart, and complete checkout
+
+## Database Information
+
+This application uses **MongoDB** as the database:
+
+- **Database Name**: `ecommerce`
+- **Collections**: `users`, `products`, `orders`
+- **ORM**: Mongoose for schema definition and data validation
+
+### MongoDB Models
+
+1. **User Model** (`backend/models/user.model.js`)
+   - Stores user information, authentication credentials, and roles
+
+2. **Product Model** (`backend/models/product.model.js`)
+   - Stores product details, pricing, and inventory
+
+3. **Order Model** (`backend/models/order.model.js`)
+   - Stores order information and payment status
+
+### Viewing Database Data
+
+You can view the MongoDB data using:
+
+**MongoDB Compass** (GUI):
+```bash
+# Download from: https://www.mongodb.com/products/compass
+# Connect to: mongodb://localhost:27017
+```
+
+**MongoDB Shell** (CLI):
+```bash
+mongosh
+use ecommerce
+db.users.find()
+db.products.find()
+db.orders.find()
+```
+
+## Troubleshooting
+
+### MongoDB Connection Issues
+
+1. **Error: "MongooseServerSelectionError"**
+   - Make sure MongoDB is running: `mongod` or `brew services start mongodb-community`
+   - Check if port 27017 is not blocked
+   - Verify `MONGO_URI` in your `.env` file
+
+2. **Error: "Connection refused"**
+   - MongoDB service is not started
+   - Start MongoDB manually or as a service
+
+3. **Using MongoDB Atlas?**
+   - Whitelist your IP address in Atlas dashboard
+   - Update `MONGO_URI` with your Atlas connection string
+   - Include your username and password in the connection string
 
 ## Project Structure
 
