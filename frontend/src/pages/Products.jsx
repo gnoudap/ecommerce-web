@@ -15,7 +15,7 @@ function Products() {
   const fetchProducts = async () => {
     try {
       const data = await productService.getAllProducts();
-      setProducts(data);
+      setProducts(data?.products || []);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -23,7 +23,7 @@ function Products() {
     }
   };
 
-  const filteredProducts = products.filter(product =>
+  const filteredProducts = (products || []).filter(product =>
     product.name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -34,7 +34,7 @@ function Products() {
           <h1 className="text-4xl font-display font-bold text-slate-800 tracking-tight">Our Collection</h1>
           <p className="text-slate-500 mt-2">Discover the perfect items for your lifestyle</p>
         </div>
-        
+
         <div className="relative w-full md:w-96">
           <input
             type="text"
