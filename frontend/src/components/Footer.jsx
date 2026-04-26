@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Hexagon, Mail, Phone, MapPin, ArrowRight, Rss, Globe, Camera, MessageCircle } from 'lucide-react';
+import { scrollToTop } from './ScrollToTop.jsx';
 
 function Footer() {
   return (
@@ -19,7 +20,7 @@ function Footer() {
                 <Hexagon size={24} className="fill-current" />
               </div>
               <span className="text-2xl font-display font-bold text-white tracking-tight">
-                Lumina
+                DuongPham
               </span>
             </Link>
             <p className="text-slate-400 leading-relaxed text-sm">
@@ -39,7 +40,11 @@ function Footer() {
             <ul className="space-y-3">
               {['Home', 'Products', 'Cart', 'About Us', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`} className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group w-fit text-sm">
+                  <Link 
+                    to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`} 
+                    onClick={scrollToTop}
+                    className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group w-fit text-sm"
+                  >
                     <ArrowRight size={14} className="text-transparent group-hover:text-indigo-400 -ml-4 group-hover:ml-0 transition-all duration-300" />
                     {item}
                   </Link>
@@ -54,15 +59,15 @@ function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={20} className="text-indigo-400 shrink-0 mt-0.5" />
-                <span className="text-slate-400 text-sm">123 Commerce Avenue, Tech District, San Francisco, CA 94103</span>
+                <span className="text-slate-400 text-sm">Hai Chau District, Da Nang, Vietnam</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-indigo-400 shrink-0" />
-                <span className="text-slate-400 text-sm">+1 (555) 123-4567</span>
+                <span className="text-slate-400 text-sm">+84 123 456 789</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-indigo-400 shrink-0" />
-                <span className="text-slate-400 text-sm">support@lumina.com</span>
+                <span className="text-slate-400 text-sm">support@duongpham.com</span>
               </li>
             </ul>
           </div>

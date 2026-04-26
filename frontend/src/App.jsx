@@ -12,6 +12,8 @@ import Checkout from './pages/Checkout.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
+import AboutUs from './pages/AboutUs.jsx';
+import Contact from './pages/Contact.jsx';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/products/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/about-us" element={<AboutUs />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/checkout" element={
                 <ProtectedRoute>
                   <Checkout />

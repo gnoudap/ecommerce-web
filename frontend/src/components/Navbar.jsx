@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { ShoppingCart, LogOut, Settings, Package, Home, Menu, X, Hexagon } from 'lucide-react';
+import { scrollToTop } from './ScrollToTop.jsx';
 
 function Navbar() {
   const { cart } = useCart();
@@ -46,7 +47,7 @@ function Navbar() {
             <Hexagon size={24} className="fill-current" />
           </div>
           <span className="text-2xl font-display font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-700 to-violet-600">
-            Lumina
+            DuongPham
           </span>
         </Link>
         
@@ -91,10 +92,10 @@ function Navbar() {
             </div>
           ) : (
             <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
-              <Link to="/login" className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors px-2">
+              <Link to="/login" onClick={scrollToTop} className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors px-2">
                 Log in
               </Link>
-              <Link to="/register" className="text-sm font-medium bg-slate-900 text-white px-5 py-2.5 rounded-full hover:bg-indigo-600 transition-colors shadow-md hover:shadow-lg hover:-translate-y-0.5 transform duration-200">
+              <Link to="/register" onClick={scrollToTop} className="text-sm font-medium bg-slate-900 text-white px-5 py-2.5 rounded-full hover:bg-indigo-600 transition-colors shadow-md hover:shadow-lg hover:-translate-y-0.5 transform duration-200">
                 Sign up
               </Link>
             </div>
@@ -136,8 +137,8 @@ function Navbar() {
             </>
           ) : (
             <div className="grid grid-cols-2 gap-3 mt-2">
-              <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="text-center font-medium bg-slate-100 text-slate-800 hover:bg-slate-200 transition-colors py-3 rounded-xl border border-slate-200">Log in</Link>
-              <Link to="/register" onClick={() => setIsMobileMenuOpen(false)} className="text-center font-medium bg-slate-900 text-white hover:bg-indigo-600 transition-colors py-3 rounded-xl shadow-md">Sign up</Link>
+              <Link to="/login" onClick={() => { scrollToTop(); setIsMobileMenuOpen(false); }} className="text-center font-medium bg-slate-100 text-slate-800 hover:bg-slate-200 transition-colors py-3 rounded-xl border border-slate-200">Log in</Link>
+              <Link to="/register" onClick={() => { scrollToTop(); setIsMobileMenuOpen(false); }} className="text-center font-medium bg-slate-900 text-white hover:bg-indigo-600 transition-colors py-3 rounded-xl shadow-md">Sign up</Link>
             </div>
           )}
         </div>

@@ -27,7 +27,7 @@ api.interceptors.request.use(
 // Product Service
 export const productService = {
   getAllProducts: async () => {
-    const response = await api.get('/products');
+    const response = await api.get('/api/products');
     return response.data;
   },
 
@@ -37,12 +37,12 @@ export const productService = {
   },
 
   searchProducts: async (query) => {
-    const response = await api.get(`/products/search?query=${query}`);
+    const response = await api.get(`/api/products/search?query=${query}`);
     return response.data;
   },
 
   getProductsByCategory: async (category) => {
-    const response = await api.get(`/products/category/${category}`);
+    const response = await api.get(`/api/products/category/${category}`);
     return response.data;
   }
 };
@@ -50,7 +50,7 @@ export const productService = {
 // User Service
 export const userService = {
   login: async (credentials) => {
-    const response = await api.post('/users/login', credentials);
+    const response = await api.post('/api/users/login', credentials);
     if (response.data.token) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userInfo', JSON.stringify(response.data));
@@ -59,7 +59,7 @@ export const userService = {
   },
 
   register: async (userData) => {
-    const response = await api.post('/users/register', userData);
+    const response = await api.post('/api/users/register', userData);
     if (response.data.token) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userInfo', JSON.stringify(response.data));
@@ -68,12 +68,12 @@ export const userService = {
   },
 
   getUserProfile: async (userId) => {
-    const response = await api.get(`/users/${userId}`);
+    const response = await api.get(`/api/users/${userId}`);
     return response.data;
   },
 
   updateUser: async (userId, userData) => {
-    const response = await api.put(`/users/${userId}`, userData);
+    const response = await api.put(`/api/users/${userId}`, userData);
     return response.data;
   },
 
@@ -86,17 +86,17 @@ export const userService = {
 // Order Service
 export const orderService = {
   createOrder: async (orderData) => {
-    const response = await api.post('/orders', orderData);
+    const response = await api.post('/api/orders', orderData);
     return response.data;
   },
 
   getUserOrders: async () => {
-    const response = await api.get('/orders/myorders');
+    const response = await api.get('/api/orders/myorders');
     return response.data;
   },
 
   getOrderById: async (orderId) => {
-    const response = await api.get(`/orders/${orderId}`);
+    const response = await api.get(`/api/orders/${orderId}`);
     return response.data;
   }
 };
@@ -104,7 +104,7 @@ export const orderService = {
 // Payment Service
 export const paymentService = {
   createPaymentIntent: async (amount) => {
-    const response = await api.post('/payment/create-payment-intent', { amount });
+    const response = await api.post('/api/payment/create-payment-intent', { amount });
     return response.data;
   }
 };
