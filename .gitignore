@@ -2,8 +2,6 @@
 node_modules/
 /.pnp
 .pnp.js
-package-lock.json
-yarn.lock
 
 # Environment variables
 .env
@@ -11,6 +9,7 @@ yarn.lock
 .env.development.local
 .env.test.local
 .env.production.local
+.env.example
 backend/.env
 frontend/.env
 
@@ -73,3 +72,5 @@ desktop.ini
 *.pid
 *.seed
 *.pid.lock
+
+*.agent
