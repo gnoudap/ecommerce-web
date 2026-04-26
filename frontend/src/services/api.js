@@ -32,7 +32,7 @@ export const productService = {
   },
 
   getProductById: async (id) => {
-    const response = await api.get(`/products/${id}`);
+    const response = await api.get(`/api/products/${id}`);
     return response.data;
   },
 
