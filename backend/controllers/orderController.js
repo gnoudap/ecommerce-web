@@ -20,7 +20,7 @@ export async function getAllOrders(req, res) {
 // @access  Private
 export async function getOrderById(req, res) {
     try {
-        const order = await Order.findById(req.params.id)
+        const order = await Order.findById(req.params._id)
             .populate('user', 'name email')
             .populate('items.product', 'name price image');
 
@@ -59,7 +59,7 @@ export async function createOrder(req, res) {
         }
 
         const order = await Order.create({
-            user: req.user.id,
+            user: req.user._id,
             items,
             totalPrice,
             shippingAddress
@@ -83,7 +83,7 @@ export async function createOrder(req, res) {
 // @access  Private
 export async function updateOrder(req, res) {
     try {
-        const order = await Order.findById(req.params.id);
+        const order = await Order.findById(req.params._id);
 
         if (order) {
             order.shippingAddress = req.body.shippingAddress || order.shippingAddress;
@@ -103,7 +103,7 @@ export async function updateOrder(req, res) {
 // @access  Private/Admin
 export async function deleteOrder(req, res) {
     try {
-        const order = await Order.findById(req.params.id);
+        const order = await Order.findById(req.params._id);
 
         if (order) {
             await order.deleteOne();
@@ -121,7 +121,7 @@ export async function deleteOrder(req, res) {
 // @access  Private
 export async function getUserOrders(req, res) {
     try {
-        const orders = await Order.find({ user: req.user.id })
+        const orders = await Order.find({ user: req.user._id })
             .populate('items.product', 'name price image');
         res.status(200).json(orders);
     } catch (error) {
@@ -135,7 +135,7 @@ export async function getUserOrders(req, res) {
 export async function updateOrderStatus(req, res) {
     try {
         const { status } = req.body;
-        const order = await Order.findById(req.params.id);
+        const order = await Order.findById(req.params._id);
 
         if (order) {
             order.status = status;

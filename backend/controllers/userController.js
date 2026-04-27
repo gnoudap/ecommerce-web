@@ -19,7 +19,7 @@ export async function getAllUsers(req, res) {
 // @access  Private
 export async function getUserById(req, res) {
     try {
-        const user = await User.findById(req.params.id).select('-password');
+        const user = await User.findById(req.params._id).select('-password');
         if (user) {
             res.status(200).json(user);
         } else {
@@ -66,7 +66,7 @@ export async function createUser(req, res) {
 // @access  Private
 export async function updateUser(req, res) {
     try {
-        const user = await User.findById(req.params.id);
+        const user = await User.findById(req.params._id);
 
         if (user) {
             user.name = req.body.name || user.name;
@@ -100,7 +100,7 @@ export async function updateUser(req, res) {
 // @access  Private/Admin
 export async function deleteUser(req, res) {
     try {
-        const user = await User.findById(req.params.id);
+        const user = await User.findById(req.params._id);
 
         if (user) {
             await user.deleteOne();

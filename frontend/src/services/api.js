@@ -31,8 +31,8 @@ export const productService = {
     return response.data;
   },
 
-  getProductById: async (id) => {
-    const response = await api.get(`/api/products/${id}`);
+  getProductById: async (_id) => {
+    const response = await api.get(`/api/products/${_id}`);
     return response.data;
   },
 
@@ -67,13 +67,13 @@ export const userService = {
     return response.data;
   },
 
-  getUserProfile: async (userId) => {
-    const response = await api.get(`/api/users/${userId}`);
+  getUserProfile: async (_id) => {
+    const response = await api.get(`/api/users/${_id}`);
     return response.data;
   },
 
-  updateUser: async (userId, userData) => {
-    const response = await api.put(`/api/users/${userId}`, userData);
+  updateUser: async (_id, userData) => {
+    const response = await api.put(`/api/users/${_id}`, userData);
     return response.data;
   },
 
@@ -95,8 +95,8 @@ export const orderService = {
     return response.data;
   },
 
-  getOrderById: async (orderId) => {
-    const response = await api.get(`/api/orders/${orderId}`);
+  getOrderById: async (_id) => {
+    const response = await api.get(`/api/orders/${_id}`);
     return response.data;
   }
 };

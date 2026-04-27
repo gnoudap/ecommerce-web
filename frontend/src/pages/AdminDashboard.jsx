@@ -90,14 +90,14 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleDeleteProduct = async (id) => {
+  const handleDeleteProduct = async (_id) => {
     if (!confirm('Are you sure you want to delete this product?')) return;
 
     const token = JSON.parse(localStorage.getItem('userInfo'))?.token;
     const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
     try {
-      const res = await fetch(`${API_URL}/products/${id}`, {
+      const res = await fetch(`${API_URL}/products/${_id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
