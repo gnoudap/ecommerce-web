@@ -23,7 +23,7 @@ function ProductDetail() {
         setLoading(false);
       }
     };
-    
+
     fetchProduct();
   }, [id]);
 
@@ -76,21 +76,21 @@ function ProductDetail() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
         <div className="relative group">
           <div className="absolute inset-0 bg-indigo-100 rounded-3xl transform rotate-3 scale-105 opacity-50 group-hover:rotate-6 transition-transform duration-500"></div>
-          <img 
-            src={product.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800'} 
-            alt={product.name} 
+          <img
+            src={product.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800'}
+            alt={product.name}
             className="w-full relative z-10 rounded-3xl shadow-xl shadow-slate-200/50 object-cover min-h-[400px]"
           />
         </div>
-        
+
         <div className="flex flex-col justify-center">
           <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-800 tracking-tight leading-tight mb-4">{product.name}</h1>
           <p className="text-3xl font-display font-bold text-indigo-600 mb-6">${Number(product.price).toFixed(2)}</p>
-          
+
           <div className="prose prose-slate mb-8">
             <p className="text-lg text-slate-600 leading-relaxed">{product.description}</p>
           </div>
-          
+
           <div className="border-t border-slate-100 pt-8 mt-auto">
             <div className="flex items-center gap-6 mb-6">
               <span className="font-semibold text-slate-700">Quantity</span>
@@ -104,8 +104,8 @@ function ProductDetail() {
                 </button>
               </div>
             </div>
-            
-            <button 
+
+            <button
               onClick={handleAddToCart}
               className="w-full py-4 bg-indigo-600 text-white rounded-2xl text-lg font-bold hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3"
             >

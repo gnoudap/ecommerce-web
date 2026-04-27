@@ -40,8 +40,8 @@ function Footer() {
             <ul className="space-y-3">
               {['Home', 'Products', 'Cart', 'About Us', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link 
-                    to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`} 
+                  <Link
+                    to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`}
                     onClick={scrollToTop}
                     className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group w-fit text-sm"
                   >
@@ -67,7 +67,7 @@ function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-indigo-400 shrink-0" />
-                <span className="text-slate-400 text-sm">support@duongpham.com</span>
+                <span className="text-slate-400 text-sm">support@johndoe.com</span>
               </li>
             </ul>
           </div>
@@ -77,12 +77,12 @@ function Footer() {
             <h3 className="text-white font-display font-semibold text-lg mb-6">Newsletter</h3>
             <p className="text-slate-400 mb-4 text-sm">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
             <form className="relative mt-2" onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="Your email address" 
+              <input
+                type="email"
+                placeholder="Your email address"
                 className="w-full bg-slate-800 border border-slate-700 text-slate-200 px-4 py-3 rounded-xl focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 pr-12 transition-all text-sm"
               />
-              <button 
+              <button
                 type="submit"
                 className="absolute right-2 top-2 bottom-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg px-3 flex items-center justify-center transition-colors shadow-md"
               >

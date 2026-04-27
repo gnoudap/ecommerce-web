@@ -25,7 +25,7 @@ export async function getAllProducts(req, res) {
 export async function getProductById(req, res) {
     try {
         const product = await Product.findById(req.params.id);
-        
+
         if (product) {
             res.status(200).json(product);
         } else {
