@@ -8,10 +8,10 @@ const router = express.Router();
 router.get('/', cacheProducts, productController.getAllProducts);
 router.get('/search', cacheProducts, productController.searchProducts);
 router.get('/category/:category', cacheProducts, productController.getProductsByCategory);
-router.get('/:_id', cacheProducts, productController.getProductById);
-router.post('/:_id/reviews', protect, clearProductCache, productController.createProductReview);
+router.get('/:id', cacheProducts, productController.getProductById);
+router.post('/:id/reviews', protect, clearProductCache, productController.createProductReview);
 router.post('/', protect, admin, clearProductCache, productController.createProduct);
-router.put('/:_id', protect, admin, clearProductCache, productController.updateProduct);
-router.delete('/:_id', protect, admin, clearProductCache, productController.deleteProduct);
+router.put('/:id', protect, admin, clearProductCache, productController.updateProduct);
+router.delete('/:id', protect, admin, clearProductCache, productController.deleteProduct);
 
 export default router;

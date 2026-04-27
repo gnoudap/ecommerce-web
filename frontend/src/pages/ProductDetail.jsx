@@ -5,7 +5,7 @@ import { productService } from '../services/api';
 import { ArrowLeft, Minus, Plus, ShoppingCart } from 'lucide-react';
 
 function ProductDetail() {
-  const { _id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
@@ -15,7 +15,7 @@ function ProductDetail() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const data = await productService.getProductById(_id);
+        const data = await productService.getProductById(id);
         setProduct(data);
         setLoading(false);
       } catch (error) {
@@ -25,7 +25,7 @@ function ProductDetail() {
     };
 
     fetchProduct();
-  }, [_id]);
+  }, [id]);
 
   const handleAddToCart = () => {
     addToCart({ ...product, quantity });

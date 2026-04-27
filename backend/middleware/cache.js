@@ -11,7 +11,7 @@ export const cacheProducts = async (req, res, next) => {
 
         // Override res.json to cache the response
         const originalJson = res.json;
-        res.json = function(data) {
+        res.json = function (data) {
             redis.setex(key, 3600, JSON.stringify(data)); // Cache for 1 hour
             originalJson.call(this, data);
         };

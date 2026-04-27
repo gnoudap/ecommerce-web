@@ -24,8 +24,8 @@ export async function getAllProducts(req, res) {
 // @access  Public
 export async function getProductById(req, res) {
     try {
-        const product = await Product.findById(req.params._id);
-        
+        const product = await Product.findById(req.params.id);
+
         if (product) {
             res.status(200).json(product);
         } else {
@@ -65,7 +65,7 @@ export async function updateProduct(req, res) {
     try {
         const { name, price, description, category, stock, image } = req.body;
 
-        const product = await Product.findById(req.params._id);
+        const product = await Product.findById(req.params.id);
 
         if (product) {
             product.name = name || product.name;
@@ -90,7 +90,7 @@ export async function updateProduct(req, res) {
 // @access  Private/Admin
 export async function deleteProduct(req, res) {
     try {
-        const product = await Product.findById(req.params._id);
+        const product = await Product.findById(req.params.id);
 
         if (product) {
             await product.deleteOne();
@@ -156,7 +156,7 @@ export async function searchProducts(req, res) {
 export async function createProductReview(req, res) {
     try {
         const { rating, comment } = req.body;
-        const product = await Product.findById(req.params._id);
+        const product = await Product.findById(req.params.id);
 
         if (product) {
             const alreadyReviewed = product.reviews.find(
