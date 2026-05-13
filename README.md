@@ -30,7 +30,7 @@ Before running this application, ensure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/gnoudap/ecommerce-web.git
    cd ecommerce-webapp
    ```
 
@@ -60,11 +60,11 @@ Before running this application, ensure you have the following installed:
    ```env
    PORT=5000
    NODE_ENV=development
-   
+
    # MongoDB Connection String
    MONGO_URI=mongodb://localhost:27017/ecommerce
    # For MongoDB Atlas, use: mongodb+srv://<username>:<password>@cluster.mongodb.net/ecommerce
-   
+
    JWT_SECRET=your_jwt_secret_key_here
    STRIPE_SECRET_KEY=your_stripe_secret_key
    REDIS_URL=redis://localhost:6379
@@ -81,6 +81,19 @@ Before running this application, ensure you have the following installed:
    VITE_API_URL=http://localhost:5000
    VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key
    ```
+
+### Environment Variables Reference
+
+<!-- AUTO-GENERATED: ENV -->
+| Variable | Required | Description | Example |
+|----------|----------|-------------|---------|
+| `PORT` | No | Server Configuration | `5000` |
+| `NODE_ENV` | No | Environment Mode | `development` |
+| `MONGO_URI` | Yes | MongoDB Configuration | `mongodb://localhost:27017/ecommerce` |
+| `JWT_SECRET` | Yes | JWT Configuration | `your_jwt_secret_key...` |
+| `STRIPE_SECRET_KEY` | Yes | Stripe Configuration (for payment processing) | `your_stripe_secret_key` |
+| `REDIS_URL` | No | Redis Configuration (optional - for rate limiting) | `redis://localhost:6379` |
+<!-- AUTO-GENERATED: END -->
 
 ## Running the Application
 
@@ -152,6 +165,19 @@ cd backend
 npm run seed:admin
 ```
 
+## Available Scripts
+
+<!-- AUTO-GENERATED: SCRIPTS -->
+| Command | Description |
+|---------|-------------|
+| `npm run server` | Starts the backend development server using nodemon |
+| `npm run client` | Starts the frontend development server (`vite`) |
+| `npm run dev` | Starts both frontend and backend concurrently |
+| `npm run start` | Starts the backend server for production |
+| `npm run build` | Installs all dependencies and builds the frontend for production |
+| `npm run install-all` | Installs dependencies for root, backend, and frontend |
+<!-- AUTO-GENERATED: END -->
+
 ## Usage
 
 - Visit **http://localhost:5173** to access the application
@@ -214,26 +240,43 @@ db.orders.find()
    - Update `MONGO_URI` with your Atlas connection string
    - Include your username and password in the connection string
 
-## Project Structure
+## Architecture (Codemap)
 
-```
-ecommerce-webapp/
-├── backend/           # Node.js/Express backend
-│   ├── config/       # Database and service configurations
-│   ├── controllers/  # Request handlers
-│   ├── middleware/   # Custom middleware
-│   ├── models/       # MongoDB models
-│   ├── routes/       # API routes
-│   ├── scripts/      # Utility scripts
-│   └── utils/        # Helper functions
-└── frontend/         # React frontend
-    ├── public/       # Static files
-    └── src/
-        ├── components/  # Reusable components
-        ├── context/     # React context
-        ├── pages/       # Page components
-        └── services/    # API services
-```
+<!-- AUTO-GENERATED: CODEMAP -->
+<!-- Generated: 2026-04-28 | Files scanned: ~25 | Token estimate: ~400 -->
+### Backend Architecture
+
+**Routes & Controllers:**
+- `productRoutes.js` → `productController.js` (Catalog management)
+- `userRoutes.js` → `userController.js` (Auth & profiles)
+- `orderRoutes.js` → `orderController.js` (Checkout flow)
+- `paymentRoutes.js` (Stripe integration)
+- `uploadRoutes.js` (File uploads via Multer)
+
+**Data Models (Mongoose):**
+- `user.model.js` (Auth credentials, roles)
+- `product.model.js` (Pricing, stock, reviews)
+- `order.model.js` (Transaction status, totals)
+
+**Key Middleware:**
+- `cache.js` (Redis response caching)
+- `rateLimiter.js` (API rate limiting)
+
+### Frontend Architecture
+
+**Pages:**
+- `Home.jsx`, `AboutUs.jsx`, `Contact.jsx` (Landing & Static)
+- `Products.jsx`, `ProductDetail.jsx` (Catalog & Viewing)
+- `Cart.jsx`, `Checkout.jsx` (Shopping Flow)
+- `Login.jsx`, `Register.jsx` (Authentication)
+- `AdminDashboard.jsx` (Content & Order Management)
+
+**Dependencies:**
+- Tailwind CSS (Utility-first styling)
+- Stripe React JS (Payments integration)
+- React Router (Client-side navigation)
+- React Hot Toast (Notifications)
+<!-- AUTO-GENERATED: END -->
 
 ## Technologies Used
 
@@ -242,3 +285,11 @@ ecommerce-webapp/
 - **Payment:** Stripe (in development)
 - **Authentication:** JWT, bcryptjs
 - **Caching:** Redis (in development)
+
+## Website Access
+
+[Click here](https://ecommerce-web-9ns.pages.dev/) to access the website.
+
+### Admin user:
+Username: [test123@gmail.com]
+Password: [12345678]
