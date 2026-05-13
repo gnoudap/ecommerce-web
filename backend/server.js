@@ -3,6 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
 import connectDB from './config/db.js';
 import redis from './config/redis.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
@@ -26,6 +28,12 @@ connectDB();
 // Middleware
 import { apiLimiter } from './middleware/rateLimiter.js';
 
+// Security Headers
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+}));
+
+// CORS
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -37,6 +45,9 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
 
 // Apply rate limiting to all /api routes
 app.use('/api', apiLimiter);
@@ -62,4 +73,3 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-

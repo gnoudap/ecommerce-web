@@ -96,7 +96,7 @@ function Footer() {
       <div className="border-t border-slate-800 bg-slate-950/50">
         <div className="max-w-7xl mx-auto py-6 px-5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">
-            &copy; {new Date().getFullYear()} Lumina E-Commerce. All rights reserved.
+            &copy; {new Date().getFullYear()} DuongPham E-Commerce. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
             <Link to="/privacy" className="text-slate-500 hover:text-white transition-colors">Privacy Policy</Link>
